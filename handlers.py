@@ -3,7 +3,7 @@ from decorators import input_error
 @input_error
 def add_contact(args, contacts):
     name, phone = args
-    if name not in contacts:
+    if name.capitalize() not in contacts:
         contacts[name] = phone
         return "Contact added."
     else:
