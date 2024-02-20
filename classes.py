@@ -22,7 +22,7 @@ class Phone(Field):
         if len(value) == 10:
             super().__init__(value)
         else:
-            raise ValueError('Incorrect зрщту ащкьфе')
+            raise ValueError('Incorrect phone format')
 		
 
 class Record:
@@ -34,16 +34,41 @@ class Record:
 
     def add_phone(self,phone):
         self.phones.append(Phone(phone))
+        
+    def remove_phone(self, phone):
+        for el in self.phones:
+            if el.value == phone:
+                self.phones.remove(el)
+        
+    def edit_phone(self,old_phone,new_phone):
+        for phone in self.phones:
+            if phone.value == old_phone:
+                phone.value = new_phone
+    
+    def find_phone(self,phone):
+        for el in self.phones:
+            if el.value == phone:
+                return
     
     def __str__(self):
         return f"Contact name: {self.name.value}, phones: {'; '.join(p.value for p in self.phones)}"
+    
 
 class AddressBook(UserDict):
     # реалізація класу
 		pass
 
 
+john_record = Record("John")
+john_record.add_phone("1234567890")
+john_record.add_phone("5555555555")
+# john_record.remove_phone("5555555555")
+john_record.edit_phone("5555555555","6666666666")
+print(john_record)
 
+jane_record = Record("Jane")
+jane_record.add_phone("9876543210")
+# print(jane_record)
 
 # # Створення нової адресної книги
 #     book = AddressBook()
