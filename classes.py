@@ -48,7 +48,7 @@ class Record:
     def find_phone(self,phone):
         for el in self.phones:
             if el.value == phone:
-                return
+                return el.value
     
     def __str__(self):
         return f"Contact name: {self.name.value}, phones: {'; '.join(p.value for p in self.phones)}"
@@ -64,7 +64,11 @@ john_record.add_phone("1234567890")
 john_record.add_phone("5555555555")
 # john_record.remove_phone("5555555555")
 john_record.edit_phone("5555555555","6666666666")
-print(john_record)
+
+found_phone = john_record.find_phone("6666666666")
+print(f"{john_record.name}: {found_phone}")
+
+# print(john_record)
 
 jane_record = Record("Jane")
 jane_record.add_phone("9876543210")
