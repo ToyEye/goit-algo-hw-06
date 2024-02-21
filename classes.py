@@ -10,7 +10,7 @@ class Field:
 class Name(Field):
     
     def __init__(self, value):
-        if len(value) !=0:
+        if len(value) !=0 :
             super().__init__(value)
         else:
             raise ValueError("Incorrect name")
@@ -19,7 +19,7 @@ class Name(Field):
 class Phone(Field):
     
     def __init__(self, value):
-        if len(value) == 10:
+        if len(value) == 10 and value.isdigit() :
             super().__init__(value)
         else:
             raise ValueError('Incorrect phone format')
