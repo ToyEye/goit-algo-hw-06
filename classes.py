@@ -51,7 +51,7 @@ class Record:
     def find_phone(self,phone):
         for el in self.phones:
             if el.value == phone:
-                return el        #пошук номера
+                return Phone(el.value)        #пошук номера
     
     def __str__(self):
         return f"Contact name: {self.name.value}, phones: {'; '.join(p.value for p in self.phones)}"
@@ -85,8 +85,8 @@ jane_record.add_phone("9876543210")
 book.add_record(jane_record)
 
  # Виведення всіх записів у книзі
-for name, record in book.data.items():
-    print(record)
+# for name, record in book.data.items():
+#     print(record)
 
 # Знаходження та редагування телефону для John
 john = book.find("John")
@@ -95,11 +95,11 @@ john.edit_phone("1234567890", "1112223333")
 # print(john)  # Виведення: Contact name: John, phones: 1112223333; 5555555555
 
  # Пошук конкретного телефону у записі John
-# found_phone = john.find_phone("5555555555")
-# print(f"{john.name}: {found_phone}")  # Виведення: 5555555555
+found_phone = john.find_phone("5555555555")
+print(f"{john.name}: {found_phone}")  # Виведення: 5555555555
 
-for name, record in book.data.items():
-    print(record)
+# for name, record in book.data.items():
+#     print(record)
 
 # Видалення запису Jane
 book.delete("Jane")
