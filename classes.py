@@ -38,13 +38,15 @@ class Record:
             if el.value == phone:
                 self.phones.remove(el) #видалення телефону
         
-    def edit_phone(self,old_phone,new_phone):
+    def edit_phone(self, old_phone, new_phone):
+        phone_found = False  # Флаг для відстеження номеру
         for phone in self.phones:
             if phone.value == old_phone:
-                phone.value = new_phone   #зміна номера
-                
-            else:
-                raise ValueError('phone dosn\'t exist')    
+                phone.value = new_phone  # зміна номера
+                phone_found = True  
+                break  
+        if not phone_found:
+            raise ValueError('Phone doesn\'t exist')   
     
     def find_phone(self,phone):
         for el in self.phones:
@@ -83,8 +85,8 @@ jane_record.add_phone("9876543210")
 book.add_record(jane_record)
 
  # Виведення всіх записів у книзі
-# for name, record in book.data.items():
-#     print(record)
+for name, record in book.data.items():
+    print(record)
 
 # Знаходження та редагування телефону для John
 john = book.find("John")
@@ -93,8 +95,11 @@ john.edit_phone("1234567890", "1112223333")
 # print(john)  # Виведення: Contact name: John, phones: 1112223333; 5555555555
 
  # Пошук конкретного телефону у записі John
-found_phone = john.find_phone("5555555555")
-print(f"{john.name}: {found_phone}")  # Виведення: 5555555555
+# found_phone = john.find_phone("5555555555")
+# print(f"{john.name}: {found_phone}")  # Виведення: 5555555555
+
+for name, record in book.data.items():
+    print(record)
 
 # Видалення запису Jane
 book.delete("Jane")
