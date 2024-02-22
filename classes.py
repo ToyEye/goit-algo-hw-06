@@ -39,11 +39,8 @@ class Record:
                 self.phones.remove(el) #видалення телефону
         
     def edit_phone(self, old_phone, new_phone):
-        try:
-             Phone(new_phone)
-        except ValueError as e:
-            raise ValueError(f'Invalid new phone: {str(e)}')
         
+        Phone(new_phone)
         
         for phone in self.phones:
             if phone.value == old_phone:
